@@ -190,6 +190,11 @@ module.exports = function (grunt) {
                 dirs: ['<%= yeoman.dist %>']
             }
         },
+        rev: {
+            files: {
+                src: ['<%= yeoman.dist %>/styles/{,*/}*.css']
+            }
+        },
         imagemin: {
             dist: {
                 files: [{
@@ -241,7 +246,8 @@ module.exports = function (grunt) {
                     src: [
                         '*.{ico,txt}',
                         '.htaccess',
-                        'images/{,*/}*.{webp,gif}'
+                        'images/{,*/}*.{webp,gif}',
+                        '_partials/*.ejs'
                     ]
                 }]
             }
@@ -311,6 +317,7 @@ module.exports = function (grunt) {
         'cssmin',
         'uglify',
         'copy',
+        'rev',
         'usemin'
     ]);
 
