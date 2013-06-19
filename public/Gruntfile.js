@@ -36,9 +36,13 @@ module.exports = function (grunt) {
                 files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
                 tasks: ['compass']
             },
+            template: {
+                files: ['<%= yeoman.app %>/views/{,*/}*.ejs'],
+                tasks: ['template', 'livereload']
+            },
             livereload: {
                 files: [
-                    '<%= yeoman.app %>/*.html',
+                    '.tmp/*.html',
                     '{.tmp,<%= yeoman.app %>}/styles/{,*/}*.css',
                     '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
                     '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}'
@@ -177,6 +181,13 @@ module.exports = function (grunt) {
                 }
             }
         },
+        template: {
+            index: {
+                src: '<%= yeoman.app %>/views/index.ejs',
+                dest: '<%= yeoman.app %>/index.html',
+                variables: {}
+            }
+        },
         useminPrepare: {
             html: '<%= yeoman.app %>/index.html',
             options: {
@@ -184,10 +195,11 @@ module.exports = function (grunt) {
             }
         },
         usemin: {
-            html: ['<%= yeoman.dist %>/{,*/}*.html'],
+            html: ['<%= yeoman.dist %>/views/{,*/}*.ejs'],
             css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
             options: {
-                dirs: ['<%= yeoman.dist %>']
+                dirs: ['<%= yeoman.dist %>'],
+                basedir: '<%= yeoman.dist %>'
             }
         },
         rev: {
@@ -244,10 +256,10 @@ module.exports = function (grunt) {
                     cwd: '<%= yeoman.app %>',
                     dest: '<%= yeoman.dist %>',
                     src: [
+                        'views/{,*/}*.ejs',
                         '*.{ico,txt}',
                         '.htaccess',
-                        'images/{,*/}*.{webp,gif}',
-                        '_partials/*.ejs'
+                        'images/{,*/}*.{webp,gif}'
                     ]
                 }]
             }
@@ -284,6 +296,7 @@ module.exports = function (grunt) {
             'clean:server',
             'coffee:dist',
             'createDefaultTemplate',
+            'template',
             'jst',
             'compass:server',
             'livereload-start',
@@ -309,6 +322,7 @@ module.exports = function (grunt) {
         'createDefaultTemplate',
         'jst',
         'compass:dist',
+        'template',
         'useminPrepare',
         'requirejs',
         'imagemin',
