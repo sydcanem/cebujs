@@ -1,0 +1,12 @@
+{
+	"name": "cebujs",
+	"version": "1.0.0",
+	"descriptions": "Cebujs.com site",
+	"private": true,
+	"dependencies": {
+		"express": "latest",
+		"mongoose": "latest",
+		"async": "latest",
+		"ejs": "latest"
+	}
+}
