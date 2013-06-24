@@ -40,7 +40,7 @@ app.configure('development', function () {
 			res.render('404');
 		} else {
 			var stack = err.stack ? err.stack.split('\n').join('<br/>') : err;
-			res.render('404', {error: stack});
+			res.render('505', {error: stack});
 		}
 	});
 	app.all('/robots.txt', function (req, res){
@@ -53,7 +53,7 @@ app.configure('production', function () {
 		if (err instanceof NotFound) {
 			res.render('404');
 		} else {
-			res.render('404', {error: ''});
+			res.render('505', {error: ''});
 		}
 	});
 	app.all('/robots.txt', function (req, res){
