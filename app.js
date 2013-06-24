@@ -1,4 +1,4 @@
-var config = require('./config'),
+var config = require('./lib/siteConfig'),
 	express = require('express'),
 	http = require('http'),
 	path = require('path');
