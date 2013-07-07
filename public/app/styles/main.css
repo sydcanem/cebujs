@@ -2,8 +2,11 @@
 
 body {
 	background: #fafafa;
-	padding-top: 60px;
+	padding-top: 20px;
 	font-family: "nimbus-sans-extended",sans-serif;
+}
+body.main {
+    padding-top: 60px;
 }
 header h1 {
 	font-size: 22px;
@@ -90,10 +93,11 @@ section.block {
 	text-align: center;
 }
 footer {
-	margin-top: 40px;
-	min-height: 200px;
-	background: #8cc84b;
-	color: #fff;
+    margin-top: 40px;
+    min-height: 200px;
+    background: #8cc84b;
+    text-shadow: 1px 1px 1px rgb(114, 170, 54);
+    color: #fff;
 }
 footer h2 {
 	font-size: 16px;

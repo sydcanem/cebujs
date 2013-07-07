@@ -8,27 +8,27 @@ var server = http.createServer(app);
 
 exports.app = app;
 
-/***
- * Routes
- */
+// Routes
 var index = require('./routes/index');
 var jobs = require('./routes/jobs');
 
 app.configure(function() {
 	app.set('view engine', 'ejs');
 	
-	app.configure('development', function () {
+	if ('development' == app.get('env')) {
 		app.set('views', __dirname + '/public/app/views');
 		app.use(express.logger('dev'));
 		app.use(express.static(path.join(__dirname, 'public/app')));
-	});
-
-	app.configure('production', function () {
+	} else {;
 		app.set('views', __dirname + '/public/dist/views');
-	});
+	}
 
 	app.use(express.favicon());
 	app.use(express.bodyParser());
+	app.use(function (req, res, next) {
+		res.locals = {app: {}};
+		next();
+	})
 	index.setup(app);
 	jobs.setup(app);
 	app.use(app.router);
@@ -40,7 +40,7 @@ app.configure('development', function () {
 			res.render('404');
 		} else {
 			var stack = err.stack ? err.stack.split('\n').join('<br/>') : err;
-			res.render('404', {error: stack});
+			res.render('500', {error: stack});
 		}
 	});
 	app.all('/robots.txt', function (req, res){
@@ -53,7 +53,7 @@ app.configure('production', function () {
 		if (err instanceof NotFound) {
 			res.render('404');
 		} else {
-			res.render('404', {error: ''});
+			res.render('500', {error: ''});
 		}
 	});
 	app.all('/robots.txt', function (req, res){

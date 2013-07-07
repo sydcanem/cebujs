@@ -185,7 +185,11 @@ module.exports = function (grunt) {
             index: {
                 src: '<%= yeoman.app %>/views/index.ejs',
                 dest: '<%= yeoman.app %>/index.html',
-                variables: {}
+                variables: {
+                    app: {
+                        page: 'main'
+                    }
+                }
             }
         },
         useminPrepare: {
