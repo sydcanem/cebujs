@@ -11,6 +11,7 @@ exports.app = app;
 // Routes
 var index = require('./routes/index');
 var jobs = require('./routes/jobs');
+var events = require('./routes/event');
 
 app.configure(function() {
 	app.set('view engine', 'ejs');
@@ -31,6 +32,7 @@ app.configure(function() {
 	})
 	index.setup(app);
 	jobs.setup(app);
+	events.setup(app);
 	app.use(app.router);
 });
 

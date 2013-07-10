@@ -5,6 +5,9 @@ body {
 	padding-top: 20px;
 	font-family: "nimbus-sans-extended",sans-serif;
 }
+body.no-top-pad {
+	padding-top: 0px;
+}
 body.main {
     padding-top: 60px;
 }
@@ -35,12 +38,18 @@ div.backie {
 	max-height: 60px;
 	max-width: 100%;
 }
+.event {
+	text-align: center;
+}
 .event-icon {
 	cursor: pointer;
 }
 .event-icon img {
 	width: 200px;
 	padding-bottom: 10px;
+}
+.venue {
+	font-size: 22px;
 }
 .navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus {
 	color: inherit;
@@ -78,7 +87,6 @@ div.backie {
 	text-align: center;
 	width: 100%;
 	position: absolute;
-	margin-top: 15px;
 	color: white;
 	text-shadow: 1px 1px 1px rgb(122, 121, 113);
 }
@@ -134,4 +142,45 @@ footer h2 {
 }
 .container-narrow > hr {
 	margin: 30px 0;
+}
+
+/*
+* Page styles
+*/
+
+#node-meetup {
+	position: relative;
+	background-color: #404137;
+	text-align: center;
+	padding: 20px 0px;
+}
+.cButton {
+	margin: 20px auto;
+	display: block;
+ 	width: 80px;
+ 	height: 80px;
+ 	padding: 5px;
+ 	border-radius: 500px;
+ 	border: none;
+	background: #FFFFFF;
+
+	-moz-box-shadow:    0px 1px 1px 0px rgba(0,0,0,0.50), inset 0px 1px 3px 0px rgba(0,0,0,0.50);
+	-webkit-box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.50), inset 0px 1px 3px 0px rgba(0,0,0,0.50);
+	box-shadow:         0px 1px 1px 0px rgba(0,0,0,0.50), inset 0px 1px 3px 0px rgba(0,0,0,0.50);
+}
+.nButton {
+	display: block;
+	width: 70px;
+	height: 70px;
+	border-radius: 500px;
+	line-height: 70px;
+	text-shadow: 1px 1px 1px #4A4A4A;
+	background: #4A4A4A;
+	text-decoration: none;
+	color: #fff;
+}
+.nButton:hover {
+	background: #ccc;
+	text-decoration: none;
+	color: #fff;
 }

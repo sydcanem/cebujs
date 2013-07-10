@@ -6,10 +6,10 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title>Cebu.js - Javascript community in Cebu, Philippines</title>
+		<title><%= app.title %> | Cebu.js</title>
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width">
-		<meta property="og:title" content="Cebu.js javascript community in Cebu, Philippines">
+		<meta property="og:title" content="<%= app.title %> | Cebu.js">
 		<meta property="og:site_name" content="Cebu.js">
 		<meta property="og:type" content="website">
 		<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -20,4 +20,4 @@
 		<script type="text/javascript" src="//use.typekit.net/hau5ytr.js"></script>
 		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 	</head>
-    <body <% if (app.page) { %> class="<%= app.page %>" <% } %>>
+    <body <% if (app.page) { %> class="<%= app.page %>" <% } else { %> class="no-top-pad" <% } %>>
