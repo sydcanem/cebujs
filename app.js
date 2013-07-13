@@ -1,4 +1,4 @@
-var config = require('./lib/siteConfig'),
+var config = require('./lib/getConfig'),
 	express = require('express'),
 	http = require('http'),
 	path = require('path');
@@ -6,12 +6,10 @@ var config = require('./lib/siteConfig'),
 var app = express();
 var server = http.createServer(app);
 
-exports.app = app;
-
 // Routes
-var index = require('./routes/index');
-var jobs = require('./routes/jobs');
-var events = require('./routes/event');
+var index = require('./app/routes/index');
+var jobs = require('./app/routes/jobs');
+var events = require('./app/routes/event');
 
 app.configure(function() {
 	app.set('view engine', 'ejs');
@@ -19,7 +17,7 @@ app.configure(function() {
 	if ('development' == app.get('env')) {
 		app.set('views', __dirname + '/public/app/views');
 		app.use(express.logger('dev'));
-		app.use(express.static(path.join(__dirname, 'public/app')));
+		app.use(express.static(__dirname + '/public/app'));
 	} else {;
 		app.set('views', __dirname + '/public/dist/views');
 	}
@@ -29,14 +27,14 @@ app.configure(function() {
 	app.use(function (req, res, next) {
 		res.locals = {app: {}};
 		next();
-	})
+	});
+
 	index.setup(app);
 	jobs.setup(app);
 	events.setup(app);
 	app.use(app.router);
-});
 
-app.configure('development', function () {
+	// Error middleware
 	app.use(function(err, req, res, next){
 		if (err instanceof NotFound) {
 			res.render('404');
@@ -45,19 +43,15 @@ app.configure('development', function () {
 			res.render('500', {error: stack});
 		}
 	});
+});
+
+app.configure('development', function () {
 	app.all('/robots.txt', function (req, res){
 		res.send('User agent: *\nDisallow: /', {'Content-Type': 'text/plain'});
 	});
 });
 
 app.configure('production', function () {
-	app.use(function (err, req, res, next){
-		if (err instanceof NotFound) {
-			res.render('404');
-		} else {
-			res.render('500', {error: ''});
-		}
-	});
 	app.all('/robots.txt', function (req, res){
 		res.send('User-agent: *', {'Content-Type': 'text/plain'});
 	});
