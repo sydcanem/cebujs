@@ -1,22 +1,27 @@
 {
-	"name": "cebujs",
-	"version": "1.0.0",
-	"author": "sydcanem",
-	"description": "Cebujs.com site",
-	"private": true,
-	"engines": {
-		"node": ">= 0.8.0"
-	},
-	"dependencies": {
-		"express": "latest",
-		"mongoose": "latest",
-		"async": "latest",
-		"ejs": "latest"
-	},
-	"main": "server",
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/sydcanem/cebujs.git"
-	},
-	"devDependencies": {}
+  "name": "cebujs",
+  "version": "1.0.0",
+  "author": "sydcanem",
+  "description": "Cebujs.com site",
+  "private": true,
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "dependencies": {
+    "express": "latest",
+    "mongoose": "latest",
+    "async": "latest",
+    "ejs": "latest"
+  },
+  "main": "app",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sydcanem/cebujs.git"
+  },
+  "devDependencies": {
+    "grunt-concurrent": "~0.3.0",
+    "grunt-nodemon": "0.0.7",
+    "matchdep": "~0.1.2",
+    "grunt-contrib-watch": "~0.4.4"
+  }
 }

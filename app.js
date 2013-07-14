@@ -32,6 +32,7 @@ app.configure(function() {
 	index.setup(app);
 	jobs.setup(app);
 	events.setup(app);
+	
 	app.use(app.router);
 
 	// Error middleware
