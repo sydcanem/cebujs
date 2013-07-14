@@ -3,5 +3,5 @@ exports.index = function (req, res) {
 }
 
 exports.setup = function (app) {
-	app.get('/jobs/:title/', exports.index);
+	app.get('/job/:title/', exports.index);
 }
