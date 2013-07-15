@@ -36,15 +36,12 @@ module.exports = function (grunt) {
 				files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
 				tasks: ['compass']
 			},
-			template: {
-				files: ['<%= yeoman.app %>/views/{,*/}*.ejs'],
-				tasks: ['template', 'livereload']
-			},
 			livereload: {
 				files: [
 					'.tmp/*.html',
 					'{.tmp,<%= yeoman.app %>}/styles/{,*/}*.css',
 					'{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
+					'<%= yeoman.app %>/views/{,*/}*.ejs',
 					'<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}'
 				],
 				tasks: ['livereload']
@@ -93,6 +90,9 @@ module.exports = function (grunt) {
 				}
 			}
 		},
+		livereload: {
+	    	port: 35728 // Default livereload listening port.
+	    },
 		open: {
 			server: {
 				path: 'http://localhost:<%= connect.options.port %>'
@@ -293,11 +293,13 @@ module.exports = function (grunt) {
 			'jst',
 			'compass:server',
 			'livereload-start',
-			'connect:livereload',
-			'open',
+			// 'connect:livereload',
+			// 'open',
 			'watch'
 		]);
 	});
+
+
 
 	grunt.registerTask('test', [
 		'clean:server',
