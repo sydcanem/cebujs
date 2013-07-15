@@ -277,10 +277,6 @@ module.exports = function (grunt) {
 
 	grunt.renameTask('regarde', 'watch');
 
-	grunt.registerTask('createDefaultTemplate', function () {
-		grunt.file.write('.tmp/scripts/templates.js', 'this.JST = this.JST || {};');
-	});
-
 	grunt.registerTask('server', function (target) {
 		if (target === 'dist') {
 			return grunt.task.run(['build', 'open', 'connect:dist:keepalive']);
@@ -293,13 +289,11 @@ module.exports = function (grunt) {
 			'jst',
 			'compass:server',
 			'livereload-start',
-			// 'connect:livereload',
-			// 'open',
+			'connect:livereload',
+			'open',
 			'watch'
 		]);
 	});
-
-
 
 	grunt.registerTask('test', [
 		'clean:server',

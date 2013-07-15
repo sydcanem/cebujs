@@ -1,5 +1,7 @@
 'use strict';
 
+var appConfig = require('./config');
+
 module.exports = function (grunt) {
 	// load all grunt task
 	require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
@@ -11,6 +13,7 @@ module.exports = function (grunt) {
 
 	grunt.initConfig({
 		assets: assetsConfig,
+		config: appConfig,
 		exec: {
 			public_grunt: {
 				command: 'grunt --force build',
@@ -43,9 +46,14 @@ module.exports = function (grunt) {
 				}
 			}
 		},
+		open: {
+			dev: {
+				path: 'http://<%= config.app.host %>:<%= config.app.port %>'
+			}
+		},
 		concurrent: {
 			target: {
-				tasks: ['nodemon', 'watch'],
+				tasks: ['nodemon', 'open:dev', 'watch'],
 				options: {
 					logConcurrentOutput: true
 				}

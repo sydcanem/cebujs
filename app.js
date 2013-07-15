@@ -1,7 +1,8 @@
 var config = require('./lib/getConfig'),
 	express = require('express'),
 	http = require('http'),
-	path = require('path');
+	path = require('path'),
+	lrSnippet = require('./lib/livereload');
 
 var app = express();
 var server = http.createServer(app);
@@ -18,6 +19,7 @@ app.configure(function() {
 		app.set('views', __dirname + '/public/app/views');
 		app.use(express.logger('dev'));
 		app.use(express.static(__dirname + '/public/app'));
+		app.use(lrSnippet);
 	} else {;
 		app.set('views', __dirname + '/public/dist/views');
 	}
