@@ -27,15 +27,6 @@ app.use(function (req, res, next) {
 // Routes 
 index.setup(app);
 
-// Error middleware
-app.use(function(err, req, res, next){
-  if (err instanceof NotFound) {
-    res.render('404');
-  } else {
-    var stack = err.stack ? err.stack.split('\n').join('<br/>') : err;
-    res.render('500', {error: stack});
-  }
-});
 
 if ('development' === app.get('env')) {
   app.all('/robots.txt', function (req, res){
@@ -55,6 +46,16 @@ function NotFound(msg) {
 
 app.all('*', function (req, res){
   throw new NotFound;
+});
+
+// Error middleware
+app.use(function(err, req, res, next){
+  if (err instanceof NotFound) {
+    res.render('404');
+  } else {
+    var stack = err.stack ? err.stack.split('\n').join('<br/>') : err;
+    res.render('500', {error: stack});
+  }
 });
 
 server.listen(config.app.port, config.app.host, function () {
