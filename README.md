@@ -1,4 +1,4 @@
-cebujs
+Cebu.JS
 ======
 
-Cebujs.com site
+Website

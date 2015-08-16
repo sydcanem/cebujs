@@ -1,7 +1,7 @@
 exports.index = function (req, res) {
-	res.render(req.params.title);
+  res.render(req.params.title);
 }
 
 exports.setup = function (app) {
-	app.get('/job/:title/', exports.index);
+  app.get('/job/:title/', exports.index);
 }
