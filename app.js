@@ -12,12 +12,11 @@ var jobs = require('./app/routes/jobs');
 var events = require('./app/routes/event');
 
 app.set('view engine', 'ejs');
+app.set('views', __dirname + '/public/app/views');
 
+// We'll use nginx in production
 if ('development' === app.get('env')) {
-  app.set('views', __dirname + '/public/app/views');
   app.use(express.static(__dirname + '/public/app'));
-} else {;
-  app.set('views', __dirname + '/public/dist/views');
 }
 
 app.use(function (req, res, next) {
@@ -59,5 +58,6 @@ app.all('*', function (req, res){
 });
 
 server.listen(config.app.port, config.app.host, function () {
-  util.log('App running in http://' + config.app.host + ':' + config.app.port);
+  util.log('App running at http://' + config.app.host + ':' + config.app.port +
+    ' in ' + app.get('env') + ' mode.');
 });
